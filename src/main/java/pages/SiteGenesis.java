@@ -12,12 +12,16 @@ public class SiteGenesis {
     public ScreenShotMaker screenShotMaker;
     public HomePage homePage;
     public Header header;
+    public LoginPage loginPage;
+    public MyAccountPage myAccountPage;
 
     public SiteGenesis(WebDriverWrapper webDriverWrapper) {
         web = new WebElementsActions(webDriverWrapper);
         screenShotMaker = new ScreenShotMaker(webDriverWrapper);
         homePage = new HomePage(webDriverWrapper);
         header = new Header(webDriverWrapper);
+        loginPage = new LoginPage(webDriverWrapper);
+        myAccountPage = new MyAccountPage(webDriverWrapper);
     }
 
 

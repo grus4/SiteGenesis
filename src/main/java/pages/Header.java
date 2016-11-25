@@ -16,6 +16,7 @@ public class Header extends Page {
         web.waitForElementToBeClickable("LoginLink");
         web.clickLink("LoginLink");
 
+
         if(web.isElementPresent("LoginButton")
                 && web.isElementAvailable("LoginButton")){
             log.info("Switching to Login page was correct");
@@ -23,5 +24,11 @@ public class Header extends Page {
             log.error("Switching to Login page was INCORRECT!!\n");
             Assert.fail("Switching to Login page was INCORRECT!!");
         }
+    }
+
+    public void logout() {
+        web.clickElement("LoginIcon");
+        web.clickButton("LogOutButton");
+
     }
 }

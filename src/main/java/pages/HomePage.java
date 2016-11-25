@@ -16,5 +16,10 @@ public class HomePage extends Page {
         webDriverWrapper.get(PropertyLoader.loadProperty("LoginPage"));
     }
 
+    public void refreshPage() {
+        web.refreshPage();
+        sleep(5000);
+    }
+
 
 }

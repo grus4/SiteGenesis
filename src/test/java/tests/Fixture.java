@@ -15,6 +15,7 @@ public class Fixture {
 
     private static final String IMPLICIT_WAIT = PropertyLoader.loadProperty("wait.timeout");
     protected static final String EMAIL = PropertyLoader.loadProperty("user.email");
+    protected static final String PASSWORD = PropertyLoader.loadProperty("user.pass");
     protected static final String PAYPAL_EMAIL = PropertyLoader.loadProperty("user.paypal.email");
     protected static final String PAYPAL_PASSWORD = PropertyLoader.loadProperty("user.paypal.password");
     protected static final String EMAILFORREGISTEREDUSER = PropertyLoader.loadProperty("registered.user.email");
