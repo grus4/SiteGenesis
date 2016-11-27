@@ -1,6 +1,10 @@
 package tests;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import org.apache.log4j.Logger;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.SiteGenesis;
 import utils.*;
@@ -13,9 +17,12 @@ public class Fixture {
     static SiteGenesis siteGenesis;
     private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
+
     private static final String IMPLICIT_WAIT = PropertyLoader.loadProperty("wait.timeout");
     protected static final String EMAIL = PropertyLoader.loadProperty("user.email");
     protected static final String PASSWORD = PropertyLoader.loadProperty("user.pass");
+    protected static final String INVALID_EMAIL = PropertyLoader.loadProperty("invalid.email");
+    protected static final String INVALID_PASSWORD = PropertyLoader.loadProperty("invalid.password");
     protected static final String PAYPAL_EMAIL = PropertyLoader.loadProperty("user.paypal.email");
     protected static final String PAYPAL_PASSWORD = PropertyLoader.loadProperty("user.paypal.password");
     protected static final String EMAILFORREGISTEREDUSER = PropertyLoader.loadProperty("registered.user.email");
@@ -55,6 +62,7 @@ public class Fixture {
     public static void setUp() {
         UIMappingSingleton.getInstance();
 
+
         //driver = new WebDriverWrapper(new ChromeDriver());
         //webDriverWrapper = WebDriverFactory.initDriver();
         webDriverWrapper = WebDriverFactory.getInstance();
@@ -64,7 +72,8 @@ public class Fixture {
         log.info("Start Test Suite execution");
     }
 
-   /* @BeforeMethod
+
+    /*@BeforeMethod
     public static void beforeMethod(ITestResult testResult) {
         log.info("<=== Start test - " + testResult.getTestName() + " ===>");
     }
@@ -75,7 +84,7 @@ public class Fixture {
             log.info("<=== Test - " + testResult.getTestName() + " is " + testResult.getStatus() + " ===>");
         } else {
             log.error("<=== Test - " + testResult.getTestName() + " is " + testResult.getStatus() + " ===>");
-            goPro.screenShotMaker.takeScreenShot(testResult.getTestName());
+            siteGenesis.screenShotMaker.takeScreenShot(testResult.getTestName());
         }
         log.info("<=== End test - " + testResult.getTestName() + " ===>");
     }*/

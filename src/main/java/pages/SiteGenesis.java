@@ -14,6 +14,7 @@ public class SiteGenesis {
     public Header header;
     public LoginPage loginPage;
     public MyAccountPage myAccountPage;
+    public CreateAccountPage createAccountPage;
 
     public SiteGenesis(WebDriverWrapper webDriverWrapper) {
         web = new WebElementsActions(webDriverWrapper);
@@ -22,6 +23,7 @@ public class SiteGenesis {
         header = new Header(webDriverWrapper);
         loginPage = new LoginPage(webDriverWrapper);
         myAccountPage = new MyAccountPage(webDriverWrapper);
+        createAccountPage = new CreateAccountPage(webDriverWrapper);
     }
 
 

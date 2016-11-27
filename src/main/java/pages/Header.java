@@ -31,4 +31,18 @@ public class Header extends Page {
         web.clickButton("LogOutButton");
 
     }
+
+    public void switchToCreateAccountPage() {
+        web.clickElement("LoginIcon");
+        web.waitForElementToBeClickable("RegisterLink");
+        web.clickLink("RegisterLink");
+
+        if(web.isElementPresent("ApplyButton")
+                && web.isElementAvailable("ApplyButton")) {
+            log.info("Switching to Create Account page was correct");
+        } else {
+            log.error("Switching to Create Account page was INCORRECT!\n");
+            Assert.fail("Switching to Create Account page was INCORRECT!");
+        }
+    }
 }
