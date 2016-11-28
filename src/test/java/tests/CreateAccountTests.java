@@ -32,7 +32,7 @@ public class CreateAccountTests extends Fixture {
 
     @Test
     public void createAccountFormValidation_Re_registerTheSameUser() {
-        siteGenesis.homePage.openLoginPage();
+        siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToCreateAccountPage();
         siteGenesis.createAccountPage.fillFirstNameField(FIRSTNAME);
         siteGenesis.createAccountPage.fillLastNameField(LASTNAME);
@@ -42,5 +42,19 @@ public class CreateAccountTests extends Fixture {
         siteGenesis.createAccountPage.fillConfirmPasswordField(PASSWORD);
         siteGenesis.createAccountPage.clickApplyButton();
         siteGenesis.createAccountPage.checkFormValidation_Re_registerTheSameUser();
+    }
+
+    @Test
+    public void createAccountFormValidation_with_DifferentEmail_in_Email__and_ConfirmEmail_Fields() {
+        siteGenesis.homePage.openPage(SITE_URL);
+        siteGenesis.header.switchToCreateAccountPage();
+        siteGenesis.createAccountPage.fillFirstNameField(FIRSTNAME);
+        siteGenesis.createAccountPage.fillLastNameField(LASTNAME);
+        siteGenesis.createAccountPage.fillEmailField(PAYPAL_EMAIL);
+        siteGenesis.createAccountPage.fillConfirmEmailField(EMAILFORREGISTEREDUSER);
+        siteGenesis.createAccountPage.fillPasswordField(PASSWORD);
+        siteGenesis.createAccountPage.fillConfirmPasswordField(PASSWORD);
+        siteGenesis.createAccountPage.clickApplyButton();
+        siteGenesis.createAccountPage.checkFormValidation_with_DifferentEmail_in_Email__and_ConfirmEmail_Fields();
     }
 }
