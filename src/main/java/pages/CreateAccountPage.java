@@ -44,6 +44,8 @@ public class CreateAccountPage extends Page{
         checkValidationForEmptyLastNameField();
         checkValidationForEmptyEmailField();
         checkValidationForEmptyConfirmEmailField();
+        checkValidationForEmptyPasswordField();
+        checkValidationForEmptyConfirmPasswordField();
 
     }
 
@@ -98,17 +100,80 @@ public class CreateAccountPage extends Page{
             log.info("Confirm Email Error Message for empty field is displayed correctly under the field");
         } else {
             log.error("Confirm Email Error Message for empty field is displayed INCORRECTLY!" + "\n"
-                    + "is ConfirmEmailNameErrorMessage present - " + web.isElementPresent("ErrorMessageForEmptyConfirmEmail") + "\n"
-                    + "ConfirmEmailNameErrorMessage - " + web.getElementText("ErrorMessageForEmptyConfirmEmail"));
+                    + "is ConfirmEmailErrorMessage present - " + web.isElementPresent("ErrorMessageForEmptyConfirmEmail") + "\n"
+                    + "ConfirmEmailErrorMessage - " + web.getElementText("ErrorMessageForEmptyConfirmEmail"));
             Assert.fail("Confirm Email Error Message for empty field is displayed INCORRECTLY!" + "\n"
-                    + "is ConfirmEmailNameErrorMessage present - " + web.isElementPresent("ErrorMessageForEmptyConfirmEmail") + "\n"
-                    + "ConfirmEmailNameErrorMessage - " + web.getElementText("ErrorMessageForEmptyConfirmEmail"));
+                    + "is ConfirmEmailErrorMessage present - " + web.isElementPresent("ErrorMessageForEmptyConfirmEmail") + "\n"
+                    + "ConfirmEmailErrorMessage - " + web.getElementText("ErrorMessageForEmptyConfirmEmail"));
+
+        }
+    }
+
+    public void checkValidationForEmptyPasswordField(){
+        if(web.isElementPresent("ErrorMessageForEmptyPassword")
+                && web.getElementText("ErrorMessageForEmptyPassword").equals("This field is required.")){
+            log.info("Password Error Message for empty field is displayed correctly under the field");
+        } else {
+            log.error("Password Error Message for empty field is displayed INCORRECTLY!" + "\n"
+                    + "is PasswordErrorMessage present - " + web.isElementPresent("ErrorMessageForEmptyPassword") + "\n"
+                    + "PasswordErrorMessage - " + web.getElementText("ErrorMessageForEmptyPassword"));
+            Assert.fail("Password Error Message for empty field is displayed INCORRECTLY!" + "\n"
+                    + "is PasswordErrorMessage present - " + web.isElementPresent("ErrorMessageForEmptyPassword") + "\n"
+                    + "PasswordErrorMessage - " + web.getElementText("ErrorMessageForEmptyPassword"));
+
+        }
+    }
+
+    public void checkValidationForEmptyConfirmPasswordField(){
+        if(web.isElementPresent("ErrorMessageForEmptyConfirmPassword")
+                && web.getElementText("ErrorMessageForEmptyConfirmPassword").equals("This field is required.")){
+            log.info("Confirm Password Error Message for empty field is displayed correctly under the field");
+        } else {
+            log.error("Confirm Password Error Message for empty field is displayed INCORRECTLY!" + "\n"
+                    + "is ConfirmPasswordErrorMessage present - " + web.isElementPresent("ErrorMessageForEmptyConfirmPassword") + "\n"
+                    + "ConfirmPasswordErrorMessage - " + web.getElementText("ErrorMessageForEmptyConfirmPassword"));
+            Assert.fail("Confirm Password Error Message for empty field is displayed INCORRECTLY!" + "\n"
+                    + "is ConfirmPasswordErrorMessage present - " + web.isElementPresent("ErrorMessageForEmptyConfirmPassword") + "\n"
+                    + "ConfirmPasswordErrorMessage - " + web.getElementText("ErrorMessageForEmptyConfirmPassword"));
 
         }
     }
 
 
+    public void fillEmailField(String email) {
+        web.input("EmailField", email);
+    }
 
+    public void fillConfirmEmailField(String confirmEmail) {
+        web.input("ConfirmEmailField", confirmEmail);
+    }
 
+    public void checkFormValidation_Re_registerTheSameUser() {
+        if(web.isElementPresent("ErrorMessageForTakenUserName")
+                && web.getElementText("ErrorMessageForTakenUserName").equals("Username already taken.")) {
+            log.info("Username already taken message is displayed correctly");
+        } else  {
+            log.error("Username already taken message is displayed INCORRECTLY!" + "\n"
+            + "is ErrorMessageForTakenUserName present - " + web.isElementPresent("ErrorMessageForTakenUserName") + "\n"
+            + "ErrorMessageForTakenUserName - " + web.getElementText("ErrorMessageForTakenUserName"));
+            Assert.fail("Username already taken message is displayed INCORRECTLY!" + "\n"
+                    + "is ErrorMessageForTakenUserName present - " + web.isElementPresent("ErrorMessageForTakenUserName") + "\n"
+                    + "ErrorMessageForTakenUserName - " + web.getElementText("ErrorMessageForTakenUserName"));
+        }
+    }
 
+    public void checkFormValidation_with_DifferentEmail_in_Email__and_ConfirmEmail_Fields() {
+        if(web.isElementPresent("ErrorMessageMismatchingEmails")
+                && web.getElementText("ErrorMessageMismatchingEmails").equals("Please enter the same value again.")){
+            log.info("Error Message for Mismatching emails is displayed correctly");
+        } else {
+            log.error("Error Message for Mismatching emails is displayed INCORRECTLY!" + "\n"
+            + "is Error Message for Mismatching emails present - " + web.isElementPresent("ErrorMessageMismatchingEmails") + "\n"
+            + "Error Message for Mismatching emails - " + web.getElementText("ErrorMessageMismatchingEmails"));
+            Assert.fail("Error Message for Mismatching emails is displayed INCORRECTLY!" + "\n"
+                    + "is Error Message for Mismatching emails present - " + web.isElementPresent("ErrorMessageMismatchingEmails") + "\n"
+                    + "Error Message for Mismatching emails - " + web.getElementText("ErrorMessageMismatchingEmails"));
+        }
+
+    }
 }

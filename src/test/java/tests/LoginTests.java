@@ -30,14 +30,65 @@ public class LoginTests extends  Fixture {
     }
 
     @Test
-    public void invalidDataValidationForEmailField() {
+    public void invalidDataValidationForEmailWithMissingAt() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToLoginPage();
-        siteGenesis.loginPage.fillEmailField(INVALID_EMAIL);
+        siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_MISSING_AT);
         siteGenesis.loginPage.fillPasswordField(PASSWORD);
         siteGenesis.loginPage.clickLoginButton();
         siteGenesis.loginPage.checkValidationForInvalidData();
     }
+
+    @Test
+    public void invalidDataValidationForEmailFieldWithMissingAddress() {
+        siteGenesis.homePage.openPage(SITE_URL);
+        siteGenesis.header.switchToLoginPage();
+        siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_MISSING_ADDRESS);
+        siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        siteGenesis.loginPage.clickLoginButton();
+        siteGenesis.loginPage.checkValidationForInvalidData();
+    }
+
+    @Test
+    public void invalidDataValidationForEmailFieldWithSuperfluousText() {
+        siteGenesis.homePage.openPage(SITE_URL);
+        siteGenesis.header.switchToLoginPage();
+        siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_SUPERFLUOUS_TEXT);
+        siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        siteGenesis.loginPage.clickLoginButton();
+        siteGenesis.loginPage.checkValidationForInvalidData();
+    }
+
+    @Test
+    public void invalidDataValidationForEmailFieldCopyPasteFromAddressBookWithName() {
+        siteGenesis.homePage.openPage(SITE_URL);
+        siteGenesis.header.switchToLoginPage();
+        siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_COPY_PASTE_FROM_ADDRESS_BOOK_WITH_NAME);
+        siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        siteGenesis.loginPage.clickLoginButton();
+        siteGenesis.loginPage.checkValidationForInvalidData();
+    }
+
+    @Test
+    public void invalidDataValidationForEmailFieldWithTwoAt() {
+        siteGenesis.homePage.openPage(SITE_URL);
+        siteGenesis.header.switchToLoginPage();
+        siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_COPY_WITH_TWO_AT);
+        siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        siteGenesis.loginPage.clickLoginButton();
+        siteGenesis.loginPage.checkValidationForInvalidData();
+    }
+
+    @Test
+    public void invalidDataValidationForEmailFieldSpecialCharacters() {
+        siteGenesis.homePage.openPage(SITE_URL);
+        siteGenesis.header.switchToLoginPage();
+        siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_SPECIAL_CHARACTERS);
+        siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        siteGenesis.loginPage.clickLoginButton();
+        siteGenesis.loginPage.checkValidationForInvalidData();
+    }
+
 
     @Test
     public void invalidDataValidationForPasswordField() {
@@ -53,7 +104,7 @@ public class LoginTests extends  Fixture {
     public void invalidDataValidationForEmailAndPasswordFields(){
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToLoginPage();
-        siteGenesis.loginPage.fillEmailField(INVALID_EMAIL);
+        siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_MISSING_AT);
         siteGenesis.loginPage.fillPasswordField(INVALID_PASSWORD);
         siteGenesis.loginPage.clickLoginButton();
         siteGenesis.loginPage.checkValidationForInvalidData();

@@ -21,7 +21,12 @@ public class Fixture {
     private static final String IMPLICIT_WAIT = PropertyLoader.loadProperty("wait.timeout");
     protected static final String EMAIL = PropertyLoader.loadProperty("user.email");
     protected static final String PASSWORD = PropertyLoader.loadProperty("user.pass");
-    protected static final String INVALID_EMAIL = PropertyLoader.loadProperty("invalid.email");
+    protected static final String INVALID_EMAIL_MISSING_AT = PropertyLoader.loadProperty("invalid.email.missing.at");
+    protected static final String INVALID_EMAIL_MISSING_ADDRESS = PropertyLoader.loadProperty("invalid.email.missing.address");
+    protected static final String INVALID_EMAIL_SUPERFLUOUS_TEXT = PropertyLoader.loadProperty("invalid.email.superfluous.text");
+    protected static final String INVALID_EMAIL_COPY_PASTE_FROM_ADDRESS_BOOK_WITH_NAME = PropertyLoader.loadProperty("invalid.email.copy.paste.from.address.book");
+    protected static final String INVALID_EMAIL_SPECIAL_CHARACTERS = PropertyLoader.loadProperty("invalid.email.special.characters");
+    protected static final String INVALID_EMAIL_COPY_WITH_TWO_AT = PropertyLoader.loadProperty("invalid.email.two.at");
     protected static final String INVALID_PASSWORD = PropertyLoader.loadProperty("invalid.password");
     protected static final String PAYPAL_EMAIL = PropertyLoader.loadProperty("user.paypal.email");
     protected static final String PAYPAL_PASSWORD = PropertyLoader.loadProperty("user.paypal.password");
