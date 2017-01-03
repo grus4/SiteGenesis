@@ -84,4 +84,6 @@ public class LoginPage extends Page{
                     + "ErrorMessageForInvalidData in Email Field - " + web.getElementText("ErrorMessageForInvalidData"));
         }
     }
+
+
 }

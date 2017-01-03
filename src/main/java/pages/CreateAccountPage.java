@@ -176,4 +176,32 @@ public class CreateAccountPage extends Page{
         }
 
     }
+
+    public void checkFormValidation_with_DifferentPassword_And_ConfirmPassword() {
+        if(web.isElementPresent("ErrorMessageMismatchingPasswordAndConfirmPassword")
+                && web.getElementText("ErrorMessageMismatchingPasswordAndConfirmPassword").equals("Does not match password")){
+            log.info("Error message for mismatching passwords in the Password and Confirm Password fields is displayed");
+        } else {
+            log.error("Error message for mismatching passwords in the Password and Confirm Password fields is displayed INCORRECTLY!" + "\n"
+            + "is Error message for mismatching passwords present - " + web.isElementPresent("ErrorMessageMismatchingPasswordAndConfirmPassword") + "\n"
+            + "Error message for mismatching passwords - " + web.getElementText("ErrorMessageMismatchingPasswordAndConfirmPassword"));
+            Assert.fail("Error message for mismatching passwords in the Password and Confirm Password fields is displayed INCORRECTLY!" + "\n"
+                    + "is Error message for mismatching passwords present - " + web.isElementPresent("ErrorMessageMismatchingPasswordAndConfirmPassword") + "\n"
+                    + "Error message for mismatching passwords - " + web.getElementText("ErrorMessageMismatchingPasswordAndConfirmPassword"));
+        }
+    }
+
+    public void checkFormValidation_with_IncorrectPasswordLength() {
+        if(web.isElementPresent("ErrorMessageForIncorrectPasswordLength")
+                && web.getElementText("ErrorMessageForIncorrectPasswordLength").equals("8 - 255 characters")){
+            log.info("Error message for incorrect Password length is displayed");
+        } else {
+            log.error("Error message for incorrect Password length is displayed INCORRECTLY!" + "\n"
+            + "is Error message for incorrect Password length present - " + web.isElementPresent("ErrorMessageForIncorrectPasswordLength") + "\n"
+            + "Error message for incorrect Password length - " + web.getElementText("ErrorMessageForIncorrectPasswordLength"));
+            Assert.fail("Error message for incorrect Password length is displayed INCORRECTLY!" + "\n"
+                    + "is Error message for incorrect Password length present - " + web.isElementPresent("ErrorMessageForIncorrectPasswordLength") + "\n"
+                    + "Error message for incorrect Password length - " + web.getElementText("ErrorMessageForIncorrectPasswordLength"));
+        }
+    }
 }

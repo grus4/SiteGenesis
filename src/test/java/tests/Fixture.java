@@ -28,6 +28,7 @@ public class Fixture {
     protected static final String INVALID_EMAIL_SPECIAL_CHARACTERS = PropertyLoader.loadProperty("invalid.email.special.characters");
     protected static final String INVALID_EMAIL_COPY_WITH_TWO_AT = PropertyLoader.loadProperty("invalid.email.two.at");
     protected static final String INVALID_PASSWORD = PropertyLoader.loadProperty("invalid.password");
+    protected static final String INVALID_PASSWORD_LENGTH = PropertyLoader.loadProperty("invalid.password.length");
     protected static final String PAYPAL_EMAIL = PropertyLoader.loadProperty("user.paypal.email");
     protected static final String PAYPAL_PASSWORD = PropertyLoader.loadProperty("user.paypal.password");
     protected static final String EMAILFORREGISTEREDUSER = PropertyLoader.loadProperty("registered.user.email");

@@ -4,8 +4,8 @@
     <test name="PayPalSmokeTest">
 
         <classes>
-            <class name="tests.GuestCheckoutTest_International"/>
-            <class name="tests.RegisteredUserInternationalCheckoutTest"/>
+            <class name="tests.LoginTests"/>
+            <class name="tests.CreateAccountTests"/>
         </classes>
 
     </test>
