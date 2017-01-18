@@ -61,6 +61,9 @@ public class Fixture {
     protected static final String CARDNAME_DISCOVER = PropertyLoader.loadProperty("card.name4");
     protected static final String CARDNUMBER_DISCOVER = PropertyLoader.loadProperty("card.number4");
     protected static final String DISCOVER_CVV = PropertyLoader.loadProperty("cvv4");
+    protected static final String CARD_TYPE_2 = PropertyLoader.loadProperty("card.type.master.card");
+    protected static final String CARD_TYPE_3 = PropertyLoader.loadProperty("card.type.amex");
+    protected static final String CARD_TYPE_4 = PropertyLoader.loadProperty("card.type.discover");
 
 
 

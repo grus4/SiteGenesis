@@ -45,4 +45,34 @@ public class Header extends Page {
             Assert.fail("Switching to Create Account page was INCORRECT!");
         }
     }
+
+    public void switchToCLP() {
+        web.moveToElementAndClick("NewArrivalsCategory", "WomenSubcategory");
+
+        if(web.isElementPresent("SortingDropDown")
+                && web.isElementAvailable("SortingDropDown")){
+            log.info("Switching to CLP was correct");
+        } else {
+            log.info("Switching to CLP was INCORRECT!");
+            Assert.fail("Switching to CLP was INCORRECT!");
+        }
+    }
+
+    public void switchToShoppingCart() {
+        web.moveToElementAndClick("CartIcon", "ViewCart");
+        web.waitForElementPresent("BottomCheckoutButton");
+        web.waitForElementToBeClickable("BottomCheckoutButton");
+
+        if(web.isElementPresent("BottomCheckoutButton")
+                && web.isElementAvailable("BottomCheckoutButton")){
+            log.info("Switching to the Shopping Cart was correct");
+        } else {
+            log.error("Switching to the Shopping Cart was INCORRECT!\n");
+            Assert.fail("Switching to the Shopping Cart was INCORRECT!");
+        }
+    }
+
+    public void switchToHomePage() {
+        web.clickElement("Logo");
+    }
 }

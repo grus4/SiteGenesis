@@ -15,6 +15,14 @@ public class SiteGenesis {
     public LoginPage loginPage;
     public MyAccountPage myAccountPage;
     public CreateAccountPage createAccountPage;
+    public CategoryLandingPage categoryLandingPage;
+    public StandardPDP standardPDP;
+    public ShoppingCartPage shoppingCartPage;
+    public CheckoutLoginPage checkoutLoginPage;
+    public ShippingPage shippingPage;
+    public BillingPage billingPage;
+    public ReviewPage reviewPage;
+    public OrderReceiptPage orderReceiptPage;
 
     public SiteGenesis(WebDriverWrapper webDriverWrapper) {
         web = new WebElementsActions(webDriverWrapper);
@@ -24,7 +32,16 @@ public class SiteGenesis {
         loginPage = new LoginPage(webDriverWrapper);
         myAccountPage = new MyAccountPage(webDriverWrapper);
         createAccountPage = new CreateAccountPage(webDriverWrapper);
+        categoryLandingPage = new CategoryLandingPage(webDriverWrapper);
+        standardPDP = new StandardPDP(webDriverWrapper);
+        shoppingCartPage = new ShoppingCartPage(webDriverWrapper);
+        checkoutLoginPage = new CheckoutLoginPage(webDriverWrapper);
+        shippingPage = new ShippingPage(webDriverWrapper);
+        billingPage = new BillingPage(webDriverWrapper);
+        reviewPage = new ReviewPage(webDriverWrapper);
+        orderReceiptPage = new OrderReceiptPage(webDriverWrapper);
     }
+
 
 
 }

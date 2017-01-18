@@ -169,7 +169,7 @@ public class WebElementsActions {
 
         WebElement webElement = webDriverWrapper.findElement(UIMappingSingleton.ui(moveToLocator));
 
-        Actions actions = new Actions(webDriverWrapper);
+        Actions actions = new Actions(webDriverWrapper.getOriginalDriver());
         actions.moveToElement(webElement);
         actions.perform();  //!!! always need
         clickButton(clickToElement);
@@ -414,10 +414,10 @@ public class WebElementsActions {
      * Select/deselect the checkbox, the second parameter should be "Y" or "N"
      */
     public void selectCheckbox(String checkboxLocator, String isSet) {
-        if (webDriverWrapper.findElement(UIMappingSingleton.ui(checkboxLocator)).isSelected() & isSet.equals("N")) {
+        if (webDriverWrapper.findElement(UIMappingSingleton.ui(checkboxLocator)).isSelected() && isSet.equals("N")) {
             webDriverWrapper.findElement(UIMappingSingleton.ui(checkboxLocator)).click();
         }
-        if (!webDriverWrapper.findElement(UIMappingSingleton.ui(checkboxLocator)).isSelected() & isSet.equals("Y")) {
+        if (!webDriverWrapper.findElement(UIMappingSingleton.ui(checkboxLocator)).isSelected() && isSet.equals("Y")) {
             webDriverWrapper.findElement(UIMappingSingleton.ui(checkboxLocator)).click();
         }
     }

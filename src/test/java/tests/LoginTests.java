@@ -12,7 +12,7 @@ public class LoginTests extends  Fixture {
     @Test
     public void loginWithValidData() {
         siteGenesis.homePage.openPage(SITE_URL);
-        siteGenesis.homePage.refreshPage();
+        //siteGenesis.homePage.refreshPage();
         siteGenesis.header.switchToLoginPage();
         siteGenesis.loginPage.fillEmailField(EMAIL);
         siteGenesis.loginPage.fillPasswordField(PASSWORD);
