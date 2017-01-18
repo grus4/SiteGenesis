@@ -23,6 +23,7 @@ public class SiteGenesis {
     public BillingPage billingPage;
     public ReviewPage reviewPage;
     public OrderReceiptPage orderReceiptPage;
+    public VariationPDP variationPDP;
 
     public SiteGenesis(WebDriverWrapper webDriverWrapper) {
         web = new WebElementsActions(webDriverWrapper);
@@ -40,6 +41,7 @@ public class SiteGenesis {
         billingPage = new BillingPage(webDriverWrapper);
         reviewPage = new ReviewPage(webDriverWrapper);
         orderReceiptPage = new OrderReceiptPage(webDriverWrapper);
+        variationPDP = new VariationPDP(webDriverWrapper);
     }
 
 

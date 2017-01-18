@@ -26,4 +26,18 @@ public class CategoryLandingPage extends Page{
             Assert.fail("Switching to PDP was INCORRECT!");
         }
     }
+
+    public void switchToVariationPDP() {
+        web.clickElement("SecondProductInGrid");
+        web.waitForElementPresent("SizeSwatch");
+        web.waitForElementToBeClickable("SizeSwatch");
+
+        if( web.isElementAvailable("SizeSwatch")
+                && web.isElementAvailable("SizeSwatch")){
+            log.info("Switching to PDP was correct");
+        } else {
+            log.info("Switching to PDP was INCORRECT!");
+            Assert.fail("Switching to PDP was INCORRECT!");
+        }
+    }
 }

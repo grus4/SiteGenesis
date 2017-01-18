@@ -16,7 +16,7 @@ public class GuestCheckoutTests extends Fixture {
         siteGenesis.standardPDP.addProductToCart();
         siteGenesis.header.switchToShoppingCart();
         siteGenesis.shoppingCartPage.switchToLoginCheckoutPage();
-        siteGenesis.checkoutLoginPage.switchToShippingPage();
+        siteGenesis.checkoutLoginPage.switchToGuestShippingPage();
         siteGenesis.shippingPage.fillFirstNameField(FIRSTNAME);
         siteGenesis.shippingPage.fillLastNameField(LASTNAME);
         siteGenesis.shippingPage.fillAddressLine_1_Field(ADDRESS_1);
@@ -47,7 +47,7 @@ public class GuestCheckoutTests extends Fixture {
         siteGenesis.standardPDP.addProductToCart();
         siteGenesis.header.switchToShoppingCart();
         siteGenesis.shoppingCartPage.switchToLoginCheckoutPage();
-        siteGenesis.checkoutLoginPage.switchToShippingPage();
+        siteGenesis.checkoutLoginPage.switchToGuestShippingPage();
         siteGenesis.shippingPage.fillFirstNameField(FIRSTNAME);
         siteGenesis.shippingPage.fillLastNameField(LASTNAME);
         siteGenesis.shippingPage.fillAddressLine_1_Field(ADDRESS_1);
@@ -80,7 +80,7 @@ public class GuestCheckoutTests extends Fixture {
         siteGenesis.standardPDP.addProductToCart();
         siteGenesis.header.switchToShoppingCart();
         siteGenesis.shoppingCartPage.switchToLoginCheckoutPage();
-        siteGenesis.checkoutLoginPage.switchToShippingPage();
+        siteGenesis.checkoutLoginPage.switchToGuestShippingPage();
         siteGenesis.shippingPage.fillFirstNameField(FIRSTNAME);
         siteGenesis.shippingPage.fillLastNameField(LASTNAME);
         siteGenesis.shippingPage.fillAddressLine_1_Field(ADDRESS_1);
@@ -113,7 +113,7 @@ public class GuestCheckoutTests extends Fixture {
         siteGenesis.standardPDP.addProductToCart();
         siteGenesis.header.switchToShoppingCart();
         siteGenesis.shoppingCartPage.switchToLoginCheckoutPage();
-        siteGenesis.checkoutLoginPage.switchToShippingPage();
+        siteGenesis.checkoutLoginPage.switchToGuestShippingPage();
         siteGenesis.shippingPage.fillFirstNameField(FIRSTNAME);
         siteGenesis.shippingPage.fillLastNameField(LASTNAME);
         siteGenesis.shippingPage.fillAddressLine_1_Field(ADDRESS_1);
@@ -137,6 +137,7 @@ public class GuestCheckoutTests extends Fixture {
         Assert.assertTrue(siteGenesis.orderReceiptPage.isThankYouMessageAvailable(), "Thank you message is not displayed");
         siteGenesis.header.switchToHomePage();
     }
+
 
 
 }

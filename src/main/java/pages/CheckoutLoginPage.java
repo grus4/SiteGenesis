@@ -11,7 +11,7 @@ public class CheckoutLoginPage extends Page{
         super(dr);
     }
 
-    public void switchToShippingPage() {
+    public void switchToGuestShippingPage() {
         web.clickButton("CheckoutAsGuest");
 
         if(web.isElementPresent("FirstNameField")
@@ -21,5 +21,21 @@ public class CheckoutLoginPage extends Page{
             log.error("Switching to the Shipping page was INCORRECT!\n");
             Assert.fail("Switching to the Shipping page was INCORRECT!");
         }
+    }
+
+    public void switchToRegisteredUserShippingPage() {
+
+    }
+
+    public void fillEmailField(String email) {
+        web.input("EmailFieldOnLoginCheckoutPage", email);
+    }
+
+    public void fillPasswordField(String password) {
+        web.input("PasswordFieldOnLoginCheckoutPage", password);
+    }
+
+    public void logInAsRegisteredUser() {
+        web.clickButton("LoginButtonOnLoginCheckoutPage");
     }
 }

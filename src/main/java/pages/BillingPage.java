@@ -57,4 +57,14 @@ public class BillingPage extends Page{
     public void selectCardType(String cardType) {
         web.selectFromListByVisibleText("CardTypeDropDown", cardType);
     }
+
+
+
+    public void fillCardNumberRegisteredUser(String cardNumber) {
+        web.input("CardNumberFieldRegisteredUser", cardNumber);
+    }
+
+    public void fillSecurityCodeRegisteredUser(String securityCode) {
+        web.input("SecurityCodeFieldRegisteredUser", securityCode);
+    }
 }
