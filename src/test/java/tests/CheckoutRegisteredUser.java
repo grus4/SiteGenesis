@@ -1,13 +1,14 @@
 package tests;
 
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * Created by Rus on 18.01.2017.
  */
 public class CheckoutRegisteredUser extends Fixture {
 
+    //tests looks soo long and unreadable
     @Test
     public void checkoutAsRegisteredUser_Overnight_Visa() {
         siteGenesis.homePage.openPage(SITE_URL);

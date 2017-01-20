@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
  */
 public class LoginTests extends Fixture {
 
+    //move fixtures there cause ITestResult
     @BeforeMethod
     public static void beforeMethod(ITestResult testResult) {
         extentTest = extentReports.startTest(testResult.getTestName());

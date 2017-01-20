@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
  */
 public class GuestCheckoutTests extends Fixture {
 
+    //tests looks soo long and unreadable
     @Test
     public void guestCheckout_GroundShipping_VISA() {
         siteGenesis.homePage.openPage(SITE_URL);
@@ -137,7 +138,4 @@ public class GuestCheckoutTests extends Fixture {
         Assert.assertTrue(siteGenesis.orderReceiptPage.isThankYouMessageAvailable(), "Thank you message is not displayed");
         siteGenesis.header.switchToHomePage();
     }
-
-
-
 }

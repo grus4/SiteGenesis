@@ -2,16 +2,14 @@ package tests;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
-import org.testng.internal.TestResult;
 import pages.SiteGenesis;
-import utils.*;
+import utils.ClassNameUtil;
+import utils.PropertyLoader;
+import utils.UIMappingSingleton;
+import utils.WebDriverWrapper;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -24,6 +22,7 @@ public class Fixture {
 
     public static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
+    //Looks not soo good
     private static final String IMPLICIT_WAIT = PropertyLoader.loadProperty("wait.timeout");
     protected static final String EMAIL = PropertyLoader.loadProperty("user.email");
     protected static final String PASSWORD = PropertyLoader.loadProperty("user.pass");
@@ -71,9 +70,11 @@ public class Fixture {
     protected static final String CARD_TYPE_3 = PropertyLoader.loadProperty("card.type.amex");
     protected static final String CARD_TYPE_4 = PropertyLoader.loadProperty("card.type.discover");
 
+    //need to switch to one class like ExtentReportsManager
     public static ExtentReports extentReports;
     public static ExtentTest extentTest;
 
+    //pay attention about file path!
     final static String filePath = "E:\\Old projects\\Rusia\\SiteGenesis\\target\\MyReport\\MyReport.html";
 
     public synchronized static ExtentReports getReporter(String filePath) {

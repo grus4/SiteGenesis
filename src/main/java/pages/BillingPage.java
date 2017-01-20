@@ -7,6 +7,7 @@ import utils.WebDriverWrapper;
  * Created by Rus on 18.01.2017.
  */
 public class BillingPage extends Page{
+
     public BillingPage(WebDriverWrapper dr) {
         super(dr);
     }
@@ -17,8 +18,6 @@ public class BillingPage extends Page{
 
     public void fillCardName(String cardName) {
         web.input("CardNameField", cardName);
-
-
     }
 
     public void fillCardNumber(String cardNumber) {
@@ -57,8 +56,6 @@ public class BillingPage extends Page{
     public void selectCardType(String cardType) {
         web.selectFromListByVisibleText("CardTypeDropDown", cardType);
     }
-
-
 
     public void fillCardNumberRegisteredUser(String cardNumber) {
         web.input("CardNumberFieldRegisteredUser", cardNumber);
