@@ -4,19 +4,25 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import org.testng.internal.TestResult;
 import pages.SiteGenesis;
 import utils.*;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 
 public class Fixture {
-    static WebDriverWrapper webDriverWrapper;
-    static SiteGenesis siteGenesis;
-    private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
+    static WebDriverWrapper webDriverWrapper;
+    public static SiteGenesis siteGenesis;
+
+    public static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
     private static final String IMPLICIT_WAIT = PropertyLoader.loadProperty("wait.timeout");
     protected static final String EMAIL = PropertyLoader.loadProperty("user.email");
@@ -65,43 +71,45 @@ public class Fixture {
     protected static final String CARD_TYPE_3 = PropertyLoader.loadProperty("card.type.amex");
     protected static final String CARD_TYPE_4 = PropertyLoader.loadProperty("card.type.discover");
 
+    public static ExtentReports extentReports;
+    public static ExtentTest extentTest;
 
+    final static String filePath = "E:\\Old projects\\Rusia\\SiteGenesis\\target\\MyReport\\MyReport.html";
+
+    public synchronized static ExtentReports getReporter(String filePath) {
+        if (extentReports == null) {
+            extentReports = new ExtentReports(filePath, false);
+            extentReports.loadConfig(new File("E:\\Old projects\\Rusia\\SiteGenesis\\extent-config.xml"));
+            extentReports
+                    .addSystemInfo("Host Name", "Anshoo")
+                    .addSystemInfo("Environment", "QA");
+        }
+
+        return extentReports;
+    }
 
     @BeforeSuite
     public static void setUp() {
-        UIMappingSingleton.getInstance();
+        extentReports = getReporter(filePath);
 
-
-        //driver = new WebDriverWrapper(new ChromeDriver());
+        System.setProperty("webdriver.chrome.driver", "C:\\Tool\\chromedriver.exe");
+        webDriverWrapper = new WebDriverWrapper(new ChromeDriver());
+        //webDriverWrapper = new WebDriverWrapper(new ChromeDriver());
         //webDriverWrapper = WebDriverFactory.initDriver();
-        webDriverWrapper = WebDriverFactory.getInstance();
-        siteGenesis = new SiteGenesis(webDriverWrapper);
+        //webDriverWrapper = WebDriverFactory.getInstance();
+        //siteGenesis = new SiteGenesis(webDriverWrapper);
+
+        UIMappingSingleton.getInstance();
         webDriverWrapper.manage().timeouts().implicitlyWait(Long.parseLong(IMPLICIT_WAIT), TimeUnit.SECONDS);
         webDriverWrapper.manage().window().maximize();
         log.info("Start Test Suite execution");
     }
 
-
-    /*@BeforeMethod
-    public static void beforeMethod(ITestResult testResult) {
-        log.info("<=== Start test - " + testResult.getTestName() + " ===>");
-    }
-
-    @AfterMethod
-    public static void afterMethod(ITestResult testResult) {
-        if (testResult.isSuccess()) {
-            log.info("<=== Test - " + testResult.getTestName() + " is " + testResult.getStatus() + " ===>");
-        } else {
-            log.error("<=== Test - " + testResult.getTestName() + " is " + testResult.getStatus() + " ===>");
-            siteGenesis.screenShotMaker.takeScreenShot(testResult.getTestName());
-        }
-        log.info("<=== End test - " + testResult.getTestName() + " ===>");
-    }*/
-    //@AfterSuite
+    @AfterSuite
     public static void tearDown() {
         webDriverWrapper.quit();
         log.info("Tests Suite execution completed.");
+
+        extentReports.close();
     }
-
-
 }

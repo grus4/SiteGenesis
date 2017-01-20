@@ -1,13 +1,39 @@
 package tests;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  * Created by Rus on 24.11.2016.
  */
-public class LoginTests extends  Fixture {
+public class LoginTests extends Fixture {
 
+    @BeforeMethod
+    public static void beforeMethod(ITestResult testResult) {
+        extentTest = extentReports.startTest(testResult.getTestName());
+        extentTest.log(LogStatus.INFO, "<=== Start test - " + testResult.getTestName() + " ===>");
+
+        log.info("<=== Start test - " + testResult.getTestName() + " ===>");
+    }
+
+    @AfterMethod
+    public static void afterMethod(ITestResult testResult) {
+        if (testResult.isSuccess()) {
+            extentTest.log(LogStatus.INFO, "<=== Test - " + testResult.getTestName() + " is " + testResult.getStatus() + " ===>");
+            log.info("<=== Test - " + testResult.getTestName() + " is " + testResult.getStatus() + " ===>");
+        } else {
+            extentTest.log(LogStatus.ERROR, "<=== Test - " + testResult.getTestName() + " is " + testResult.getStatus() + " ===>");
+            log.error("<=== Test - " + testResult.getTestName() + " is " + testResult.getStatus() + " ===>");
+            siteGenesis.screenShotMaker.takeScreenShot(testResult.getTestName());
+        }
+        log.info("<=== End test - " + testResult.getTestName() + " ===>");
+        extentReports.endTest(extentTest);
+        extentReports.flush();
+    }
 
     @Test
     public void loginWithValidData() {
