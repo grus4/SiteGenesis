@@ -1,7 +1,7 @@
 package tests;
 
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * Created by Rus on 27.11.2016.
@@ -23,7 +23,7 @@ public class CreateAccountTests extends Fixture {
     }
 
     @Test
-    public void createAccountFormValidation_emptyFields() {
+    public void createAccountFormValidation_EmptyFields() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToCreateAccountPage();
         siteGenesis.createAccountPage.clickApplyButton();
@@ -31,7 +31,7 @@ public class CreateAccountTests extends Fixture {
     }
 
     @Test
-    public void createAccountFormValidation_Re_registerTheSameUser() {
+    public void createAccountFormValidation_Re_RegisterTheSameUser() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToCreateAccountPage();
         siteGenesis.createAccountPage.fillFirstNameField(FIRSTNAME);
@@ -45,7 +45,7 @@ public class CreateAccountTests extends Fixture {
     }
 
     @Test
-    public void createAccountFormValidation_with_DifferentEmail_in_Email__and_ConfirmEmail_Fields() {
+    public void createAccountFormValidation_With_DifferentEmail_In_Email_And_ConfirmEmail_Fields() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToCreateAccountPage();
         siteGenesis.createAccountPage.fillFirstNameField(FIRSTNAME);
@@ -59,7 +59,7 @@ public class CreateAccountTests extends Fixture {
     }
 
     @Test
-    public void createAccountFormValidation_with_DifferentPassword_And_ConfirmPassword() {
+    public void createAccountFormValidation_With_DifferentPassword_And_ConfirmPassword() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToCreateAccountPage();
         siteGenesis.createAccountPage.fillFirstNameField(FIRSTNAME);

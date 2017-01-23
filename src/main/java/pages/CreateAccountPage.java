@@ -7,10 +7,10 @@ import utils.WebDriverWrapper;
  * Created by Rus on 27.11.2016.
  */
 public class CreateAccountPage extends Page{
+
     public CreateAccountPage(WebDriverWrapper dr) {
         super(dr);
     }
-
 
 
     public void fillFirstNameField(String firstName) {

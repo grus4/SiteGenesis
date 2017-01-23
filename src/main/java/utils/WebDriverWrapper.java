@@ -17,16 +17,13 @@ public class WebDriverWrapper implements WebDriver, TakesScreenshot {
     private static final int TIME_TO_WAIT = Integer.parseInt(PropertyLoader.loadProperty("wait.timeout"));
     public static WebDriver driver;
 
-
     public WebDriverWrapper(WebDriver dr) {
         this.driver = dr;
     }
 
-
     public WebDriver getOriginalDriver(){
         return this.driver;
     }
-
 
     @Override
     public void get(String s) {
