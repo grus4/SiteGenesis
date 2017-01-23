@@ -173,7 +173,7 @@ public class WebElementsActions {
         actions.moveToElement(webElement);
         actions.perform();  //!!! always need
         clickButton(clickToElement);
-        log.info("moved To Element " + moveToLocator + "and clicked on" + clickToElement);
+        log.info("moved To Element " + moveToLocator + " and clicked on " + clickToElement);
     }
 
     /**
@@ -242,7 +242,7 @@ public class WebElementsActions {
      */
     public void doFocusToElementAndClick(String focusElementLocator, String elementLocator) {
         new Actions(webDriverWrapper.getOriginalDriver()).moveToElement(getElement(focusElementLocator)).perform();
-        log.info("Focus in to element" + focusElementLocator);
+        log.info("Focus in to element " + focusElementLocator);
 
         webDriverWrapper.switchTo();
 
