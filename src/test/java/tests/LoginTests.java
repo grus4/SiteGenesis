@@ -1,19 +1,27 @@
 package tests;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import com.relevantcodes.extentreports.model.ITest;
+import org.apache.bcel.classfile.Utility;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 /**
  * Created by Rus on 24.11.2016.
  */
 public class LoginTests extends Fixture {
 
+    public static ExtentTest extentTest;
+
     //move fixtures there cause ITestResult
-    @BeforeMethod
+    /*@BeforeMethod
     public static void beforeMethod(ITestResult testResult) {
         extentTest = extentReports.startTest(testResult.getTestName());
         extentTest.log(LogStatus.INFO, "<=== Start test - " + testResult.getTestName() + " ===>");
@@ -34,29 +42,57 @@ public class LoginTests extends Fixture {
         log.info("<=== End test - " + testResult.getTestName() + " ===>");
         extentReports.endTest(extentTest);
         extentReports.flush();
+    }*/
+
+
+    @AfterMethod
+    public void afterMethod(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            siteGenesis.screenShotMaker.takeScreenShot(result.getName());
+            extentTest.log(LogStatus.FAIL, result.getThrowable());
+        } else if (result.getStatus() == ITestResult.SKIP) {
+            extentTest.log(LogStatus.SKIP, "Test skipped " + result.getThrowable());
+        } else {
+            extentTest.log(LogStatus.PASS, "Test passed" + extentTest.getRunStatus());
+        }
+
+        extentReports.endTest(extentTest);
+        extentReports.flush();
     }
+
 
     @Test
     public void loginWithValidData() {
+        extentTest = extentReports.startTest("loginWithValidData");
         siteGenesis.homePage.openPage(SITE_URL);
-        //siteGenesis.homePage.refreshPage();
+        extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
+        extentTest.log(LogStatus.INFO, "Switching to Login page");
         siteGenesis.loginPage.fillEmailField(EMAIL);
+        extentTest.log(LogStatus.INFO, "Fill Email field");
         siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        extentTest.log(LogStatus.INFO, "Fill Password Field");
         siteGenesis.loginPage.switchToMyAccount();
+        extentTest.log(LogStatus.INFO, "Switch to My Account page");
         Assert.assertTrue(siteGenesis.myAccountPage.isLogoutButtonIsAvailable(), "Logout button is not displayed");
+        extentTest.log(LogStatus.INFO, "Login to Account was correct");
         siteGenesis.header.logout();
     }
 
     @Test
     public void emptyFieldsValidationFotLoginForm() {
+        extentTest = extentReports.startTest("emptyFieldsValidationFotLoginForm");
         siteGenesis.homePage.openPage(SITE_URL);
+        extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
+        extentTest.log(LogStatus.INFO, "Switching to Login page");
         siteGenesis.loginPage.clickLoginButton();
+        extentTest.log(LogStatus.INFO, "Leave empty fields and click the Login Button");
         siteGenesis.loginPage.checkValidationForAllEptyFields();
+        extentTest.log(LogStatus.INFO, "Validation message appears under each field");
     }
 
-    @Test
+    //@Test
     public void invalidDataValidationForEmailWithMissingAt() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToLoginPage();
@@ -66,7 +102,7 @@ public class LoginTests extends Fixture {
         siteGenesis.loginPage.checkValidationForInvalidData();
     }
 
-    @Test
+    //@Test
     public void invalidDataValidationForEmailFieldWithMissingAddress() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToLoginPage();
@@ -76,7 +112,7 @@ public class LoginTests extends Fixture {
         siteGenesis.loginPage.checkValidationForInvalidData();
     }
 
-    @Test
+    //@Test
     public void invalidDataValidationForEmailFieldWithSuperfluousText() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToLoginPage();
@@ -86,7 +122,7 @@ public class LoginTests extends Fixture {
         siteGenesis.loginPage.checkValidationForInvalidData();
     }
 
-    @Test
+    //@Test
     public void invalidDataValidationForEmailFieldCopyPasteFromAddressBookWithName() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToLoginPage();
@@ -96,7 +132,7 @@ public class LoginTests extends Fixture {
         siteGenesis.loginPage.checkValidationForInvalidData();
     }
 
-    @Test
+    //@Test
     public void invalidDataValidationForEmailFieldWithTwoAt() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToLoginPage();
@@ -106,7 +142,7 @@ public class LoginTests extends Fixture {
         siteGenesis.loginPage.checkValidationForInvalidData();
     }
 
-    @Test
+    //@Test
     public void invalidDataValidationForEmailFieldSpecialCharacters() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToLoginPage();
@@ -117,7 +153,7 @@ public class LoginTests extends Fixture {
     }
 
 
-    @Test
+    //@Test
     public void invalidDataValidationForPasswordField() {
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToLoginPage();
@@ -127,7 +163,7 @@ public class LoginTests extends Fixture {
         siteGenesis.loginPage.checkValidationForInvalidData();
     }
 
-    @Test
+    //@Test
     public void invalidDataValidationForEmailAndPasswordFields(){
         siteGenesis.homePage.openPage(SITE_URL);
         siteGenesis.header.switchToLoginPage();

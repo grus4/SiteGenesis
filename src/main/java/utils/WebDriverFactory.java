@@ -177,12 +177,12 @@ public class WebDriverFactory {
             driverWrapper = new WebDriverWrapper( new PhantomJSDriver(caps));
 
         } else if(CHROME.equals(browserName)){
-            System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Drivers\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
             driverWrapper = new WebDriverWrapper( new ChromeDriver(options));
 
         }  else if(INTERNET_EXPLORER.equals(browserName)){
-            System.setProperty("webdriver.ie.driver", "C:\\Tool\\IEDriverServer.exe");
+            System.setProperty("webdriver.ie.driver", "C:\\Tools\\IEDriverServer.exe");
 
             DesiredCapabilities capabilitiesIE = DesiredCapabilities.internetExplorer();
             capabilitiesIE.setCapability(

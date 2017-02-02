@@ -2,16 +2,19 @@ package tests;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.SiteGenesis;
-import utils.ClassNameUtil;
-import utils.PropertyLoader;
-import utils.UIMappingSingleton;
-import utils.WebDriverWrapper;
+import utils.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
@@ -70,35 +73,19 @@ public class Fixture {
     protected static final String CARD_TYPE_3 = PropertyLoader.loadProperty("card.type.amex");
     protected static final String CARD_TYPE_4 = PropertyLoader.loadProperty("card.type.discover");
 
-    //need to switch to one class like ExtentReportsManager
+
     public static ExtentReports extentReports;
-    public static ExtentTest extentTest;
 
-    //pay attention about file path!
-    final static String filePath = "E:\\Old projects\\Rusia\\SiteGenesis\\target\\MyReport\\MyReport.html";
 
-    public synchronized static ExtentReports getReporter(String filePath) {
-        if (extentReports == null) {
-            extentReports = new ExtentReports(filePath, false);
-            extentReports.loadConfig(new File("E:\\Old projects\\Rusia\\SiteGenesis\\extent-config.xml"));
-            extentReports
-                    .addSystemInfo("Host Name", "Anshoo")
-                    .addSystemInfo("Environment", "QA");
-        }
-
-        return extentReports;
-    }
 
     @BeforeSuite
     public static void setUp() {
-        extentReports = getReporter(filePath);
-
-        System.setProperty("webdriver.chrome.driver", "C:\\Tool\\chromedriver.exe");
-        webDriverWrapper = new WebDriverWrapper(new ChromeDriver());
+        extentReports = ExtentManager.getReporter(ExtentManager.filePath);
+        //System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver.exe");
         //webDriverWrapper = new WebDriverWrapper(new ChromeDriver());
-        //webDriverWrapper = WebDriverFactory.initDriver();
+        webDriverWrapper = WebDriverFactory.initDriver();
         //webDriverWrapper = WebDriverFactory.getInstance();
-        //siteGenesis = new SiteGenesis(webDriverWrapper);
+        siteGenesis = new SiteGenesis(webDriverWrapper);
 
         UIMappingSingleton.getInstance();
         webDriverWrapper.manage().timeouts().implicitlyWait(Long.parseLong(IMPLICIT_WAIT), TimeUnit.SECONDS);
@@ -108,9 +95,12 @@ public class Fixture {
 
     @AfterSuite
     public static void tearDown() {
+
+        extentReports.close();
         webDriverWrapper.quit();
         log.info("Tests Suite execution completed.");
 
-        extentReports.close();
     }
+
+
 }
