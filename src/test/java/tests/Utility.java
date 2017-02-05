@@ -17,7 +17,7 @@ public class Utility {
         try {
             TakesScreenshot ts=(TakesScreenshot)driver;
             File source=ts.getScreenshotAs(OutputType.FILE);
-            String dest = "D:\\Selenium group\\SiteGenesis\\target\\screenShot\\"+ screenshotName + ".png";
+            String dest = "D:\\Selenium group\\SiteGenesis\\target\\screenShots\\"+ screenshotName + ".png";
             File destination = new File(dest);
             FileUtils.copyFile(source, destination);
             System.out.println("ScreenShot Taken");
