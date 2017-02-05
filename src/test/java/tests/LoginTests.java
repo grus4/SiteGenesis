@@ -18,8 +18,6 @@ import java.io.IOException;
  */
 public class LoginTests extends Fixture {
 
-    public static ExtentTest extentTest;
-
     //move fixtures there cause ITestResult
     /*@BeforeMethod
     public static void beforeMethod(ITestResult testResult) {
@@ -45,25 +43,13 @@ public class LoginTests extends Fixture {
     }*/
 
 
-    @AfterMethod
-    public void afterMethod(ITestResult result) {
-        if (result.getStatus() == ITestResult.FAILURE) {
-            siteGenesis.screenShotMaker.takeScreenShot(result.getName());
-            extentTest.log(LogStatus.FAIL, result.getThrowable());
-        } else if (result.getStatus() == ITestResult.SKIP) {
-            extentTest.log(LogStatus.SKIP, "Test skipped " + result.getThrowable());
-        } else {
-            extentTest.log(LogStatus.PASS, "Test passed" + extentTest.getRunStatus());
-        }
-
-        extentReports.endTest(extentTest);
-        extentReports.flush();
-    }
 
 
     @Test
     public void loginWithValidData() {
-        extentTest = extentReports.startTest("loginWithValidData");
+        extentTest = extentReports
+                .startTest("loginWithValidData")
+                .assignCategory("Smoke Testing");
         siteGenesis.homePage.openPage(SITE_URL);
         extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
@@ -77,11 +63,14 @@ public class LoginTests extends Fixture {
         Assert.assertTrue(siteGenesis.myAccountPage.isLogoutButtonIsAvailable(), "Logout button is not displayed");
         extentTest.log(LogStatus.INFO, "Login to Account was correct");
         siteGenesis.header.logout();
+        extentTest.log(LogStatus.INFO, "Logout from MyAccount");
     }
 
     @Test
     public void emptyFieldsValidationFotLoginForm() {
-        extentTest = extentReports.startTest("emptyFieldsValidationFotLoginForm");
+        extentTest = extentReports
+                .startTest("emptyFieldsValidationFotLoginForm")
+                .assignCategory("Smoke Testing");
         siteGenesis.homePage.openPage(SITE_URL);
         extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
@@ -92,14 +81,23 @@ public class LoginTests extends Fixture {
         extentTest.log(LogStatus.INFO, "Validation message appears under each field");
     }
 
-    //@Test
+    @Test
     public void invalidDataValidationForEmailWithMissingAt() {
+        extentTest = extentReports
+                .startTest("invalidDataValidationForEmailWithMissingAt")
+                .assignCategory("Smoke Testing");
         siteGenesis.homePage.openPage(SITE_URL);
+        extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
+        extentTest.log(LogStatus.INFO, "Switching to Login page");
         siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_MISSING_AT);
+        extentTest.log(LogStatus.INFO, "Fill in an invalid email with missing at");
         siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        extentTest.log(LogStatus.INFO, "Fill in a valid password");
         siteGenesis.loginPage.clickLoginButton();
+        extentTest.log(LogStatus.INFO, "Click the Login Button");
         siteGenesis.loginPage.checkValidationForInvalidData();
+        extentTest.log(LogStatus.INFO, "Validation message appears under the email field");
     }
 
     //@Test

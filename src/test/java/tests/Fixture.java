@@ -17,10 +17,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import static utils.WebDriverWrapper.driver;
 
-public class Fixture {
 
-    static WebDriverWrapper webDriverWrapper;
+public class Fixture extends ExtentManager{
+
+    public static WebDriverWrapper webDriverWrapper;
     public static SiteGenesis siteGenesis;
 
     public static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
@@ -74,7 +76,7 @@ public class Fixture {
     protected static final String CARD_TYPE_4 = PropertyLoader.loadProperty("card.type.discover");
 
 
-    public static ExtentReports extentReports;
+    public ExtentTest extentTest;
 
 
 
@@ -92,12 +94,31 @@ public class Fixture {
         webDriverWrapper.manage().window().maximize();
         log.info("Start Test Suite execution");
     }
+    @AfterMethod
+    public void afterMethod(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            //siteGenesis.screenShotMaker.takeScreenShot(result.getName());
+            String screenshot_path = Utility.captureScreenshot(driver, result.getName());
+            //String image = extentTest.addScreenCapture(screenshot_path);
+            extentTest.log(LogStatus.FAIL, result.getThrowable());
+            extentTest.log(LogStatus.FAIL, "Snapshot below: " + extentTest.addScreenCapture(screenshot_path));
 
-    @AfterSuite
+        } else {
+            if (result.getStatus() == ITestResult.SKIP) {
+                extentTest.log(LogStatus.SKIP, "Test skipped " + result.getThrowable());
+            } else {
+                extentTest.log(LogStatus.PASS, "Test passed");
+            }
+        }
+
+        extentReports.endTest(extentTest);
+        extentReports.flush();
+    }
+
+    @AfterSuite(alwaysRun = true)
     public static void tearDown() {
-
-        extentReports.close();
         webDriverWrapper.quit();
+        extentReports.close();
         log.info("Tests Suite execution completed.");
 
     }

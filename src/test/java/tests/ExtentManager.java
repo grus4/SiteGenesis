@@ -14,11 +14,12 @@ public class ExtentManager {
 
     public synchronized static ExtentReports getReporter(String filePath) {
         if (extentReports == null) {
-            extentReports = new ExtentReports(filePath, false);
+            extentReports = new ExtentReports(filePath,true);
             extentReports.loadConfig(new File("D:\\Selenium group\\SiteGenesis\\extent-config.xml"));
             extentReports
                     .addSystemInfo("Host Name", "GRus")
                     .addSystemInfo("Environment", "QA");
+
         }
 
         return extentReports;
