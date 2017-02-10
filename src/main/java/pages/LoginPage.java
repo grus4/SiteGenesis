@@ -21,20 +21,24 @@ public class LoginPage extends Page{
 
     public void switchToMyAccount() {
         web.clickButton("LoginButton");
-        web.waitForElementPresent("LogoutLinkInMyAccount");
-        web.waitForElementToBeClickable("LogoutLinkInMyAccount");
 
-        if(web.isElementPresent("LogoutLinkInMyAccount")
-                && web.isElementPresent("LogoutLinkInMyAccount")){
-            log.info("Switching to My Account was correct");
-        } else {
-            log.error("Switching to My Account was INCORRECT!\n");
-            Assert.fail("Switching to My Account was INCORRECT!\n");
-        }
+
+            web.waitForElementPresent("LogoutLinkInMyAccount");
+            web.waitForElementToBeClickable("LogoutLinkInMyAccount");
+
+            if (web.isElementPresent("LogoutLinkInMyAccount")
+                    && web.isElementPresent("LogoutLinkInMyAccount")) {
+                log.info("Switching to My Account was correct");
+            } else {
+                log.error("Switching to My Account was INCORRECT!\n");
+                Assert.fail("Switching to My Account was INCORRECT!\n");
+            }
+
     }
 
     public void clickLoginButton() {
         web.clickButton("LoginButton");
+
     }
 
     public void checkValidationForEmailAddressEmptyField() {

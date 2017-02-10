@@ -100,74 +100,138 @@ public class LoginTests extends Fixture {
         extentTest.log(LogStatus.INFO, "Validation message appears under the email field");
     }
 
-    //@Test
+    @Test
     public void invalidDataValidationForEmailFieldWithMissingAddress() {
+        extentTest = extentReports
+                .startTest("invalidDataValidationForEmailFieldWithMissingAddress")
+                .assignCategory("Smoke Testing");
         siteGenesis.homePage.openPage(SITE_URL);
+        extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
+        extentTest.log(LogStatus.INFO, "Switching to Login page");
         siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_MISSING_ADDRESS);
+        extentTest.log(LogStatus.INFO, "Fill in an invalid email with missing address");
         siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        extentTest.log(LogStatus.INFO, "Fill in a valid password");
         siteGenesis.loginPage.clickLoginButton();
+        extentTest.log(LogStatus.INFO, "Click the Login Button");
         siteGenesis.loginPage.checkValidationForInvalidData();
+        extentTest.log(LogStatus.INFO, "Validation message appears under the email field");
     }
 
-    //@Test
+    @Test
     public void invalidDataValidationForEmailFieldWithSuperfluousText() {
+        extentTest = extentReports
+                .startTest("invalidDataValidationForEmailFieldWithSuperfluousText")
+                .assignCategory("Smoke Testing");
         siteGenesis.homePage.openPage(SITE_URL);
+        extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
+        extentTest.log(LogStatus.INFO, "Switching to Login page");
         siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_SUPERFLUOUS_TEXT);
+        extentTest.log(LogStatus.INFO, "Fill in an invalid email with SUPERFLUOUS_TEXT");
         siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        extentTest.log(LogStatus.INFO, "Fill in a valid password");
         siteGenesis.loginPage.clickLoginButton();
+        extentTest.log(LogStatus.INFO, "Click the Login Button");
         siteGenesis.loginPage.checkValidationForInvalidData();
+        extentTest.log(LogStatus.INFO, "Validation message appears under the email field");
     }
 
-    //@Test
+    @Test
     public void invalidDataValidationForEmailFieldCopyPasteFromAddressBookWithName() {
+        extentTest = extentReports
+                .startTest("invalidDataValidationForEmailFieldCopyPasteFromAddressBookWithName")
+                .assignCategory("Smoke Testing");
         siteGenesis.homePage.openPage(SITE_URL);
+        extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
+        extentTest.log(LogStatus.INFO, "Switching to Login page");
         siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_COPY_PASTE_FROM_ADDRESS_BOOK_WITH_NAME);
+        extentTest.log(LogStatus.INFO, "Fill in an invalid email with COPY_PASTE_FROM_ADDRESS_BOOK_WITH_NAME");
         siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        extentTest.log(LogStatus.INFO, "Fill in a valid password");
         siteGenesis.loginPage.clickLoginButton();
+        extentTest.log(LogStatus.INFO, "Click the Login Button");
         siteGenesis.loginPage.checkValidationForInvalidData();
+        extentTest.log(LogStatus.INFO, "Validation message appears under the email field");
     }
 
-    //@Test
+    @Test
     public void invalidDataValidationForEmailFieldWithTwoAt() {
+        extentTest = extentReports
+                .startTest("invalidDataValidationForEmailFieldWithTwoAt")
+                .assignCategory("Smoke Testing");
         siteGenesis.homePage.openPage(SITE_URL);
+        extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
+        extentTest.log(LogStatus.INFO, "Switching to Login page");
         siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_COPY_WITH_TWO_AT);
+        extentTest.log(LogStatus.INFO, "Fill in an INVALID_EMAIL_COPY_WITH_TWO_AT");
         siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        extentTest.log(LogStatus.INFO, "Fill in a valid password");
         siteGenesis.loginPage.clickLoginButton();
+        extentTest.log(LogStatus.INFO, "Click the Login Button");
         siteGenesis.loginPage.checkValidationForInvalidData();
+        extentTest.log(LogStatus.INFO, "Validation message appears under the email field");
     }
 
-    //@Test
+    @Test
     public void invalidDataValidationForEmailFieldSpecialCharacters() {
+        extentTest = extentReports
+                .startTest("invalidDataValidationForEmailFieldSpecialCharacters")
+                .assignCategory("Smoke Testing");
         siteGenesis.homePage.openPage(SITE_URL);
+        extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
+        extentTest.log(LogStatus.INFO, "Switching to Login page");
         siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_SPECIAL_CHARACTERS);
+        extentTest.log(LogStatus.INFO, "Fill in an INVALID_EMAIL_SPECIAL_CHARACTERS");
         siteGenesis.loginPage.fillPasswordField(PASSWORD);
+        extentTest.log(LogStatus.INFO, "Fill in a valid password");
         siteGenesis.loginPage.clickLoginButton();
+        extentTest.log(LogStatus.INFO, "Click the Login Button");
         siteGenesis.loginPage.checkValidationForInvalidData();
+        extentTest.log(LogStatus.INFO, "Validation message appears under the email field");
     }
 
 
-    //@Test
+    @Test
     public void invalidDataValidationForPasswordField() {
+        extentTest = extentReports
+                .startTest("invalidDataValidationForPasswordField")
+                .assignCategory("Smoke Testing");
         siteGenesis.homePage.openPage(SITE_URL);
+        extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
+        extentTest.log(LogStatus.INFO, "Switching to Login page");
         siteGenesis.loginPage.fillEmailField(EMAIL);
+        extentTest.log(LogStatus.INFO, "Fill in a valid email");
         siteGenesis.loginPage.fillPasswordField(INVALID_PASSWORD);
+        extentTest.log(LogStatus.INFO, "Fill in an invalid password");
         siteGenesis.loginPage.clickLoginButton();
+        extentTest.log(LogStatus.INFO, "Click the Login Button");
         siteGenesis.loginPage.checkValidationForInvalidData();
+        extentTest.log(LogStatus.INFO, "Validation message appears under the password field");
     }
 
-    //@Test
+    @Test
     public void invalidDataValidationForEmailAndPasswordFields(){
+        extentTest = extentReports
+                .startTest("invalidDataValidationForEmailAndPasswordFields")
+                .assignCategory("Smoke Testing");
         siteGenesis.homePage.openPage(SITE_URL);
+        extentTest.log(LogStatus.INFO, "Open SiteGenesis Home Page");
         siteGenesis.header.switchToLoginPage();
+        extentTest.log(LogStatus.INFO, "Switching to Login page");
         siteGenesis.loginPage.fillEmailField(INVALID_EMAIL_MISSING_AT);
+        extentTest.log(LogStatus.INFO, "Fill in an INVALID_EMAIL_MISSING_AT");
         siteGenesis.loginPage.fillPasswordField(INVALID_PASSWORD);
+        extentTest.log(LogStatus.INFO, "Fill in an invalid password");
         siteGenesis.loginPage.clickLoginButton();
+        extentTest.log(LogStatus.INFO, "Click the Login Button");
         siteGenesis.loginPage.checkValidationForInvalidData();
+        extentTest.log(LogStatus.INFO, "Validation message appears under the email and password fields");
+
     }
 }
