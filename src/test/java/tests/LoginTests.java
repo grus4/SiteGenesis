@@ -196,7 +196,7 @@ public class LoginTests extends Fixture {
     }
 
 
-    @Test
+    //@Test
     public void invalidDataValidationForPasswordField() {
         extentTest = extentReports
                 .startTest("invalidDataValidationForPasswordField")
@@ -215,7 +215,7 @@ public class LoginTests extends Fixture {
         extentTest.log(LogStatus.INFO, "Validation message appears under the password field");
     }
 
-    @Test
+    //@Test
     public void invalidDataValidationForEmailAndPasswordFields(){
         extentTest = extentReports
                 .startTest("invalidDataValidationForEmailAndPasswordFields")
