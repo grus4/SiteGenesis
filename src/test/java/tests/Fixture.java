@@ -88,16 +88,25 @@ public class Fixture extends ExtentManager{
         webDriverWrapper = WebDriverFactory.initDriver();
         //webDriverWrapper = WebDriverFactory.getInstance();
         siteGenesis = new SiteGenesis(webDriverWrapper);
-
         UIMappingSingleton.getInstance();
         webDriverWrapper.manage().timeouts().implicitlyWait(Long.parseLong(IMPLICIT_WAIT), TimeUnit.SECONDS);
         webDriverWrapper.manage().window().maximize();
         log.info("Start Test Suite execution");
     }
+
+    @BeforeTest
+    public void beforeTest() {
+        siteGenesis.loginPage.deleteAllCookies();
+    }
+
+    @AfterTest
+    public void afterTest() {
+        siteGenesis.loginPage.deleteAllCookies();
+    }
+
     @AfterMethod
     public void afterMethod(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE) {
-            //siteGenesis.screenShotMaker.takeScreenShot(result.getName());
             String screenshot_path = Utility.captureScreenshot(driver, result.getName());
             extentTest.log(LogStatus.FAIL, result.getThrowable());
             extentTest.log(LogStatus.FAIL, "Snapshot below: " + extentTest.addScreenCapture(screenshot_path));
@@ -114,13 +123,12 @@ public class Fixture extends ExtentManager{
         extentReports.flush();
     }
 
-    @AfterSuite(alwaysRun = true)
+    //@AfterSuite(alwaysRun = true)
     public static void tearDown() {
         webDriverWrapper.quit();
         extentReports.close();
         log.info("Tests Suite execution completed.");
 
     }
-
 
 }

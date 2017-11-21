@@ -4,8 +4,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import utils.ScreenShotMaker;
-import utils.WebDriverWrapper;
 
 import java.io.File;
 
